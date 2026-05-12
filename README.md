@@ -5,6 +5,7 @@ This repository contains supplementary material for a double-blind ER 2026 submi
 ## Contents
 
 - `case_coding.tsv` contains the structured validation coding: 29 claim formulations across six claim families, 18 candidate alignments, primary and secondary commitment-alignment relations, and modeling consequences.
+- `CODING_PROTOCOL.md` describes the recoding steps and relation guidelines used to produce the table.
 - `scf_review_gate.py` is a small command-line review gate that reads the coding table and summarizes the governance operation implied by each primary relation.
 
 ## Reproduce the Validation Summary
