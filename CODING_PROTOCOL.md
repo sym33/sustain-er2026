@@ -15,6 +15,7 @@ Each row represents one claim formulation used in a candidate alignment test. A 
 - accountability relation
 
 The remaining alignment columns record the tested comparison, primary relation, secondary relations, and modeling consequence.
+The `coding_rationale` column gives a short source-based explanation for the assigned relation and consequence.
 
 ## Reference Schema
 
@@ -38,6 +39,7 @@ For each SCF dimension, equality means that two values refer to the same referen
 5. **Primary relation assignment**: apply the decision rule from the paper to assign one primary relation.
 6. **Secondary relation recording**: record additional mismatches that are diagnostically relevant but do not change the primary relation.
 7. **Modeling consequence**: record the operation implied by the primary relation, such as split, qualify, translate, trace, complete, block, revise, or merge with provenance.
+8. **Rationale note**: summarize the source-framework reason for the primary relation so that disagreements can be traced to source semantics, dimension coding, or relation precedence.
 
 ## Relation Guidelines
 

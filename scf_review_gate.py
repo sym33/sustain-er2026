@@ -58,6 +58,7 @@ def load_rows(path: Path) -> list[dict[str, str]]:
         "primary_relation",
         "secondary_relations",
         "modeling_consequence",
+        "coding_rationale",
     }
     missing = required.difference(reader.fieldnames or [])
     if missing:
@@ -114,6 +115,8 @@ def query(rows: list[dict[str, str]], alignment: str) -> None:
             print(f"secondary_relations\t{row['secondary_relations']}")
         print(f"operation\t{operation}")
         print(f"consequence\t{row['modeling_consequence']}")
+        if row.get("coding_rationale"):
+            print(f"rationale\t{row['coding_rationale']}")
         print()
 
 
