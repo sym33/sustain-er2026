@@ -16,10 +16,23 @@ Each row represents one claim formulation used in a candidate alignment test. A 
 
 The remaining alignment columns record the tested comparison, primary relation, secondary relations, and modeling consequence.
 
+## Reference Schema
+
+Coding uses a documented reference schema rather than free label interpretation. The schema is induced from the source frameworks used in the validation:
+
+- GHG Protocol terms for organizational boundary, operational boundary, scopes 1--3, and value-chain coverage.
+- ISO 14068-1 terms for carbon neutrality, compensation, transition, and claim evidence.
+- SBTi terms for net-zero targets, pathway validation, scope coverage, and residual-emissions treatment.
+- EU taxonomy terms for activity-level alignment, environmental objective, substantial contribution, do-no-significant-harm criteria, and safeguards.
+- Circular-economy terms for product design, reuse, repair, recycling, remanufacturing, and product-service models.
+- Sustainability-reporting terms for indicator mapping, disclosure item, reporting entity, and framework provenance.
+
+For each SCF dimension, equality means that two values refer to the same reference-schema value. Refinement means that one value is a documented specialization of another, such as operations being narrower than value-chain coverage when the source semantics support that relation. If the source does not support a value or refinement relation, the dimension is marked `Unspecified` or the relation is recorded as trace-only rather than inferred.
+
 ## Coding Steps
 
 1. **Source paraphrase**: restate the claim using only the source-framework semantics listed in the `source` and `claim_form` fields.
-2. **Dimension coding**: fill each SCF dimension with the most specific value supported by the source formulation.
+2. **Dimension coding**: fill each SCF dimension with the most specific reference-schema value supported by the source formulation.
 3. **Underspecification marking**: use `Unspecified` when a relevant dimension is missing or too vague to support alignment.
 4. **Comparison construction**: compare the two claim profiles in the `alignment_test` using the SCF dimensions.
 5. **Primary relation assignment**: apply the decision rule from the paper to assign one primary relation.
