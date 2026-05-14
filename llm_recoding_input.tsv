@@ -1,0 +1,30 @@
+id	source	claim_family	claim_form
+C1a	ISO 14068-1	Operational carbon neutrality	Carbon-neutral operations by 2030
+C1b	ISO 14068-1	Operational carbon neutrality	Carbon-neutral product claim
+C1c	GHG Protocol	Operational carbon neutrality	Scope 1 and 2 neutrality claim
+C1d	ISO 14068-1	Operational carbon neutrality	Site-level carbon-neutral facility claim
+C1e	Early transition model	Operational carbon neutrality	Carbon-neutral operations claim without stated scope
+C2a	SBTi	Corporate net zero	Net-zero value-chain emissions by 2050
+C2b	SBTi	Corporate net zero	Near-term science-based target
+C2c	GHG Protocol	Corporate net zero	Value-chain emissions inventory
+C2d	SBTi	Corporate net zero	Residual-emissions neutralization claim
+C2e	Early transition model	Corporate net zero	Net-zero target with missing baseline and scope
+C3a	SBTi	Science-based net-zero target	Science-based net-zero target
+C3b	SBTi	Science-based target	Sectoral pathway target
+C3c	SBTi	Science-based target	Same target resubmitted with updated evidence
+C3d	SBTi	Science-based target	Target ambition without external validation
+C3e	SBTi	Science-based target	Prior target superseded by approved updated target
+C4a	EU taxonomy	Taxonomy-aligned activity	Taxonomy-aligned renewable energy activity
+C4b	EU taxonomy	Taxonomy-aligned activity	Do-no-significant-harm-compliant activity
+C4c	EU taxonomy	Sustainable finance claim	Portfolio described as sustainable
+C4d	EU taxonomy	Taxonomy eligibility claim	Eligible economic activity
+C4e	EU taxonomy	Taxonomy-aligned activity	Activity claim failing do-no-significant-harm safeguards
+C5a	Circular economy	Circular product	Circular product design claim
+C5b	Circular economy	Circular business model	Product-service model claim
+C5c	Circular economy	Reuse claim	Reusable packaging claim
+C5d	Circular economy	Repairability claim	Repairable product claim
+C6a	GRI/ESRS reporting	Reporting indicator alignment	Emissions disclosure indicator
+C6b	GRI/ESRS reporting	Disclosure alignment	ESRS climate transition-plan disclosure
+C6c	GRI/ESRS reporting	Indicator mapping	GRI-to-ESRS indicator mapping
+C6d	GRI/ESRS reporting	Taxonomy disclosure alignment	Taxonomy KPI disclosed in sustainability report
+C6e	Early reporting model	Sustainability KPI	KPI labeled climate neutral without definition

@@ -12,7 +12,10 @@ Each row represents one claim formulation used in a candidate alignment test. A 
 - metric basis
 - temporal structure
 - intervention logic
+- normative threshold
+- evidence basis
 - accountability relation
+- sustainability purpose
 
 The remaining alignment columns record the tested comparison, primary relation, secondary relations, and modeling consequence.
 The `coding_rationale` column gives a short source-based explanation for the assigned relation and consequence.
@@ -28,7 +31,7 @@ Coding uses a documented reference schema rather than free label interpretation.
 - Circular-economy terms for product design, reuse, repair, recycling, remanufacturing, and product-service models.
 - Sustainability-reporting terms for indicator mapping, disclosure item, reporting entity, and framework provenance.
 
-For each SCF dimension, equality means that two values refer to the same reference-schema value. Refinement means that one value is a documented specialization of another, such as operations being narrower than value-chain coverage when the source semantics support that relation. If the source does not support a value or refinement relation, the dimension is marked `Unspecified` or the relation is recorded as trace-only rather than inferred.
+For each SCF dimension, equality means that two values refer to the same reference-schema value. Refinement means that one value is a documented specialization of another. Actor, object, and boundary refinements are not treated as merge-safe refinements in the paper's decision rule, because a narrower or broader boundary changes who or what the claim binds; they are recorded as boundary shifts unless the transformation preserves the parent and creates a separate qualified component. If the source does not support a value or refinement relation, the dimension is marked `Unspecified` or the relation is recorded as trace-only rather than inferred.
 
 ## Coding Steps
 

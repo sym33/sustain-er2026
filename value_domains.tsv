@@ -1,0 +1,163 @@
+dimension	value
+actor	Company
+actor	Company / sector
+actor	Company or site operator
+actor	Economic actor
+actor	Firm
+actor	Fund / financial actor
+actor	Manufacturer
+actor	Producer
+actor	Producer / retailer
+actor	Reporting organization
+object	Corporate emissions
+object	Corporate target
+object	Direct and purchased-energy emissions
+object	Disclosure item
+object	Economic activity
+object	Facility
+object	Indicator correspondence
+object	Operations
+object	Packaging system
+object	Portfolio
+object	Product
+object	Product design
+object	Product or product system
+object	Residual emissions
+object	Same corporate target
+object	Service and product system
+object	Target pathway
+object	Taxonomy KPI / disclosure element
+object	Transition-plan disclosure
+object	Value-chain emissions
+object	Value-chain emissions within target boundary
+boundary	Activity and reporting boundary
+boundary	Activity boundary
+boundary	Activity eligibility boundary
+boundary	Business-model boundary
+boundary	Design and after-sales boundary
+boundary	Governed by validation criteria
+boundary	Net-zero target boundary
+boundary	Operational boundary
+boundary	Portfolio boundary
+boundary	Product boundary / life-cycle frame
+boundary	Product life-cycle / design boundary
+boundary	Reporting boundary
+boundary	Reporting entity boundary
+boundary	Reporting-framework boundary
+boundary	Return and reuse loop boundary
+boundary	Same boundary
+boundary	Same target boundary
+boundary	Scope 1 and 2
+boundary	Scope 1, 2, and relevant scope 3
+boundary	Scope 3 categories
+boundary	Scope coverage governed by criteria
+boundary	Sector-specific boundary
+boundary	Site boundary
+boundary	Unspecified
+boundary	Unspecified or partial scope
+metric_basis	CO2e inventory metrics
+metric_basis	CO2e inventory with compensation
+metric_basis	CO2e pathway metrics
+metric_basis	CO2e residual-emissions metric
+metric_basis	CO2e target metric
+metric_basis	CO2e under GHG accounting
+metric_basis	Carbon footprint or CO2e accounting
+metric_basis	Carbon or CO2e accounting
+metric_basis	Disclosure requirement
+metric_basis	Environmental objective and DNSH criteria
+metric_basis	Indicator definition and unit
+metric_basis	Indicator mapping and units
+metric_basis	Mixed activity-level criteria
+metric_basis	Repairability score or service availability
+metric_basis	Repairability, modularity, durability, or circular-design criteria
+metric_basis	Reuse cycles or return rate
+metric_basis	Same metric basis
+metric_basis	Sectoral pathway metrics
+metric_basis	Taxonomy KPI and reporting metric
+metric_basis	Taxonomy criteria with failed safeguard
+metric_basis	Taxonomy eligibility criteria
+metric_basis	Taxonomy technical screening criteria
+metric_basis	Unspecified
+metric_basis	Use intensity, lifetime extension, or material-loop metrics
+temporal_structure	2030 target
+temporal_structure	2050 target with pathway
+temporal_structure	2050 target without baseline
+temporal_structure	Long-term and interim milestones
+temporal_structure	Near-term milestones
+temporal_structure	Ongoing service period
+temporal_structure	Product life-cycle
+temporal_structure	Reporting / eligibility period
+temporal_structure	Reporting or operating period
+temporal_structure	Reporting period
+temporal_structure	Reporting period or target period
+temporal_structure	Same target period
+temporal_structure	Target and milestones
+temporal_structure	Target year
+temporal_structure	Target year / residual period
+temporal_structure	Updated target period
+intervention_logic	Accounting, not target action
+intervention_logic	Allocation / classification
+intervention_logic	Compliance with criteria
+intervention_logic	Deep reductions and residual neutralization
+intervention_logic	Design for repair, reuse, or recycling
+intervention_logic	Disclosure
+intervention_logic	Disclosure / measurement
+intervention_logic	Disclosure of eligibility or alignment
+intervention_logic	Disclosure of plan and assumptions
+intervention_logic	Eligibility screening
+intervention_logic	Emissions reductions
+intervention_logic	Neutralization after deep reductions
+intervention_logic	Non-compliance with safeguards
+intervention_logic	Pathway-aligned reductions
+intervention_logic	Planned reductions
+intervention_logic	Reduction plus compensation
+intervention_logic	Reduction plus market instruments or compensation
+intervention_logic	Reduction plus possible compensation
+intervention_logic	Repair and maintenance
+intervention_logic	Reuse and reverse logistics
+intervention_logic	Reuse, repair, leasing, or sharing
+intervention_logic	Semantic reporting alignment
+intervention_logic	Substantial contribution
+intervention_logic	Updated evidence, same intervention logic
+intervention_logic	Updated reduction pathway
+normative_threshold	Carbon-neutrality claim criteria
+normative_threshold	Circularity strategy or product-design criterion
+normative_threshold	Net-zero or science-based target criteria
+normative_threshold	Reporting-framework disclosure or indicator criterion
+normative_threshold	Taxonomy substantial-contribution, DNSH, and safeguard criteria
+normative_threshold	Unspecified
+evidence_basis	Activity criteria, DNSH, safeguards, and disclosure evidence
+evidence_basis	Circularity assessment or business-model evidence
+evidence_basis	Claim substantiation, inventory, and assurance evidence
+evidence_basis	GHG inventory and accounting evidence
+evidence_basis	Reporting-framework provenance and indicator mapping evidence
+evidence_basis	Source-framework evidence
+evidence_basis	Target documentation and validation evidence
+evidence_basis	Unspecified
+accountability_relation	Assurance / reporting governance
+accountability_relation	Assurance or claim substantiation
+accountability_relation	Business-model evidence
+accountability_relation	Carbon-neutrality standard / assurance
+accountability_relation	Carbon-neutrality standard / evidence
+accountability_relation	Disclosure / assurance
+accountability_relation	Disclosure / inventory provenance
+accountability_relation	Disclosure / investor communication
+accountability_relation	External validation
+accountability_relation	Internal commitment
+accountability_relation	Internal planning note
+accountability_relation	Operational evidence
+accountability_relation	Product documentation / consumer information
+accountability_relation	Product stewardship / documentation
+accountability_relation	Regulatory disclosure
+accountability_relation	Regulatory reporting / criteria
+accountability_relation	Reporting note
+accountability_relation	Reporting ontology / mapping evidence
+accountability_relation	Reporting standard
+accountability_relation	Target validation
+accountability_relation	Target validation / reporting
+accountability_relation	Updated validation evidence
+accountability_relation	Validation criteria
+sustainability_purpose	Circular economy
+sustainability_purpose	Climate mitigation
+sustainability_purpose	Sustainability reporting and disclosure
+sustainability_purpose	Sustainable finance and environmental objective alignment

@@ -1,0 +1,40 @@
+gold_rows	29
+recoded_rows	29
+unknown_ids	0
+dimension_matches	237
+dimension_mismatches	53
+exploratory_primary_relation_matches	12
+exploratory_primary_relation_mismatches	17
+note	primary_relation comparison is diagnostic only unless the recoder received full candidate-pair context
+
+first disagreements
+C1a	metric_basis	gold=Carbon or CO2e accounting	recoded=CO2e inventory with compensation
+C1a	intervention_logic	gold=Reduction plus possible compensation	recoded=Reduction plus compensation
+C1a	primary_relation	gold=Boundary shift	recoded=Equivalence with provenance
+C1b	object	gold=Product or product system	recoded=Product
+C1b	temporal_structure	gold=Reporting period or target period	recoded=Product life-cycle
+C1b	accountability_relation	gold=Carbon-neutrality standard / evidence	recoded=Product documentation / consumer information
+C1c	temporal_structure	gold=Target year	recoded=Reporting or operating period
+C1c	accountability_relation	gold=Disclosure / assurance	recoded=Disclosure / inventory provenance
+C1d	metric_basis	gold=CO2e inventory with compensation	recoded=Carbon or CO2e accounting
+C1d	temporal_structure	gold=Reporting period	recoded=Reporting or operating period
+C1d	accountability_relation	gold=Assurance or claim substantiation	recoded=Operational evidence
+C1e	boundary	gold=Unspecified	recoded=Unspecified or partial scope
+C1e	metric_basis	gold=CO2e target metric	recoded=CO2e inventory with compensation
+C1e	temporal_structure	gold=Target year	recoded=Unspecified
+C1e	normative_threshold	gold=Unspecified	recoded=Carbon-neutrality claim criteria
+C2a	metric_basis	gold=CO2e under GHG accounting	recoded=CO2e target metric
+C2a	accountability_relation	gold=Target validation / reporting	recoded=Target validation
+C2a	primary_relation	gold=Boundary shift	recoded=Equivalence with provenance
+C2b	object	gold=Value-chain emissions within target boundary	recoded=Corporate target
+C2b	intervention_logic	gold=Emissions reductions	recoded=Pathway-aligned reductions
+C2b	primary_relation	gold=Accountability qualification	recoded=Refinement
+C2c	actor	gold=Company	recoded=Reporting organization
+C2c	normative_threshold	gold=Net-zero or science-based target criteria	recoded=Unspecified
+C2d	accountability_relation	gold=Target validation	recoded=Target validation / reporting
+C2d	primary_relation	gold=Intervention substitution	recoded=Refinement
+C2e	object	gold=Corporate emissions	recoded=Corporate target
+C2e	boundary	gold=Unspecified	recoded=Unspecified or partial scope
+C2e	normative_threshold	gold=Unspecified	recoded=Net-zero or science-based target criteria
+C2e	evidence_basis	gold=Source-framework evidence	recoded=Unspecified
+C3a	boundary	gold=Governed by validation criteria	recoded=Net-zero target boundary
