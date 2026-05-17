@@ -1,0 +1,10 @@
+case_id	left_claim	right_claim	supersedes	actor	object	boundary	metric_basis	temporal_structure	intervention_logic	normative_threshold	evidence_basis	accountability_relation	sustainability_purpose	expected_alpha	operation
+C1a_C2a	Operational carbon-neutrality claim	Value-chain net-zero target	no	=	neq	neq	approx	neq	neq	=	neq	neq	=	B	split
+C2b_C3a	Near-term target	Externally validated science-based target	no	=	=	=	=	subset	=	=	neq	neq	=	A	qualify
+C4a_INV	Taxonomy-aligned activity	Broad sustainable-investment claim	no	=	=	=	subset	=	subset	subset	=	=	=	Ref	qualify
+C2a_C4a	Corporate net-zero target	Taxonomy-aligned activity	no	neq	neq	neq	neq	=	neq	neq	neq	neq	approx	B	split
+C3a_C3c	Approved science-based target	Same target with updated evidence	no	=	=	=	=	=	=	=	=	=	=	equiv	merge-with-provenance
+C1e_C2a	Operational carbon-neutrality claim with unstated scope	Net-zero target	no	=	=	?	=	=	=	?	?	neq	=	U	complete
+C6e_C2a	Climate-neutral KPI	Net-zero target	no	=	neq	=	?	=	neq	=	=	neq	neq	U	complete
+C4e_INV	Taxonomy activity failing safeguards	Sustainable-investment claim	no	=	=	=	neq	=	neq	bot	bot	=	=	#	block
+C3e_C3c	Earlier approved science-based target	Later approved update	yes	=	=	=	=	neq	neq	=	=	=	=	Repl	revise

@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Minimal SCF model-review gate for the ER 2026 supplementary material.
+"""SCF model-review gate for the ER 2026 supplementary material.
 
 The script reads the anonymized case coding table and reports whether candidate
 alignments are merge-safe or require governance actions such as qualifying,
 splitting, tracing, translating, completing, or blocking.
+
+It can also execute the paper's precedence rule on comparison vectors in
+alignment_cases.tsv. Those vectors are the compact, auditable form of
+S(C1, C2): one symbol per relevant SCF dimension.
 """
 
 from __future__ import annotations
@@ -15,6 +19,53 @@ from pathlib import Path
 
 
 MERGE_SAFE = {"Equivalence with provenance"}
+BOUNDARY_DIMS = {"actor", "object", "boundary"}
+EVIDENCE_DIMS = {"evidence_basis", "accountability_relation"}
+NON_BOUNDARY_DIMS = {
+    "metric_basis",
+    "temporal_structure",
+    "intervention_logic",
+    "normative_threshold",
+    "evidence_basis",
+    "accountability_relation",
+    "sustainability_purpose",
+}
+DIMENSIONS = (
+    "actor",
+    "object",
+    "boundary",
+    "metric_basis",
+    "temporal_structure",
+    "intervention_logic",
+    "normative_threshold",
+    "evidence_basis",
+    "accountability_relation",
+    "sustainability_purpose",
+)
+ALPHA_TO_OPERATION = {
+    "equiv": "merge-with-provenance",
+    "Ref": "qualify",
+    "B": "split",
+    "M": "translate",
+    "T": "qualify",
+    "I": "qualify",
+    "A": "qualify",
+    "U": "complete",
+    "#": "block",
+    "Repl": "revise",
+    "Trace": "trace",
+}
+BASELINE_MASKS = {
+    "generic_candidate_link": (),
+    "purpose_only": ("sustainability_purpose",),
+    "metric_time_purpose": ("metric_basis", "temporal_structure", "sustainability_purpose"),
+    "evidence_accountability_purpose": (
+        "evidence_basis",
+        "accountability_relation",
+        "sustainability_purpose",
+    ),
+}
+MATCHLIKE = {"=", "approx", "subset", "supset"}
 
 
 def operation_for(relation: str, consequence: str) -> str:
@@ -36,6 +87,35 @@ def operation_for(relation: str, consequence: str) -> str:
     if "qualif" in text or "refinement" in text or "record" in text or "component" in text or "interim" in text:
         return "qualify"
     return "review"
+
+
+def alpha_for(vector: dict[str, str]) -> str:
+    """Apply the manuscript's precedence rule to an SCF comparison vector."""
+    deltas = {dim: vector[dim] for dim in DIMENSIONS}
+    if vector.get("supersedes", "").lower() in {"yes", "true", "1"}:
+        return "Repl"
+    if "bot" in deltas.values():
+        return "#"
+    if "?" in deltas.values():
+        return "U"
+    if any(deltas[dim] != "=" for dim in BOUNDARY_DIMS):
+        return "B"
+    if deltas["metric_basis"] == "approx":
+        return "M"
+    if deltas["temporal_structure"] not in {"=", "subset", "supset"}:
+        return "T"
+    if deltas["intervention_logic"] not in {"=", "subset", "supset"}:
+        return "I"
+    if any(deltas[dim] != "=" for dim in EVIDENCE_DIMS):
+        return "A"
+    refinement_symbols = {deltas[dim] for dim in NON_BOUNDARY_DIMS}
+    if refinement_symbols <= {"=", "subset"} and "subset" in refinement_symbols:
+        return "Ref"
+    if refinement_symbols <= {"=", "supset"} and "supset" in refinement_symbols:
+        return "Ref"
+    if all(value == "=" for value in deltas.values()):
+        return "equiv"
+    return "Trace"
 
 
 def load_rows(path: Path) -> list[dict[str, str]]:
@@ -104,6 +184,75 @@ def summarize(rows: list[dict[str, str]]) -> None:
         print(f"{count}\t{operation}")
 
 
+def load_alignment_cases(path: Path) -> list[dict[str, str]]:
+    with path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle, delimiter="\t")
+        rows = list(reader)
+    required = {
+        "case_id",
+        "left_claim",
+        "right_claim",
+        "supersedes",
+        *DIMENSIONS,
+        "expected_alpha",
+        "operation",
+    }
+    missing = required.difference(reader.fieldnames or [])
+    if missing:
+        raise SystemExit(f"Missing columns: {', '.join(sorted(missing))}")
+    return rows
+
+
+def check_alignment_cases(path: Path) -> None:
+    rows = load_alignment_cases(path)
+    mismatches = []
+    operation_mismatches = []
+    baseline_merge_candidates = 0
+    merge_safe = 0
+    for row in rows:
+        baseline_merge_candidates += 1
+        actual = alpha_for(row)
+        actual_operation = ALPHA_TO_OPERATION[actual]
+        if actual == "equiv":
+            merge_safe += 1
+        if actual != row["expected_alpha"]:
+            mismatches.append((row["case_id"], row["expected_alpha"], actual))
+        if actual_operation != row["operation"]:
+            operation_mismatches.append((row["case_id"], row["operation"], actual_operation))
+
+    print(f"alignment_cases\t{len(rows)}")
+    print(f"generic_match_baseline_merge_candidates\t{baseline_merge_candidates}")
+    print(f"scf_merge_safe_cases\t{merge_safe}")
+    print(f"alpha_mismatches\t{len(mismatches)}")
+    print(f"operation_mismatches\t{len(operation_mismatches)}")
+    if mismatches:
+        print()
+        print("alpha_mismatch_details")
+        for case_id, expected, actual in mismatches:
+            print(f"{case_id}\texpected={expected}\tactual={actual}")
+    if operation_mismatches:
+        print()
+        print("operation_mismatch_details")
+        for case_id, expected, actual in operation_mismatches:
+            print(f"{case_id}\texpected={expected}\tactual={actual}")
+
+
+def compare_baselines(path: Path) -> None:
+    rows = load_alignment_cases(path)
+    for name, dimensions in BASELINE_MASKS.items():
+        merge_candidates = 0
+        scf_disallowed = 0
+        for row in rows:
+            if all(row[dim] in MATCHLIKE for dim in dimensions):
+                merge_candidates += 1
+                if alpha_for(row) != "equiv":
+                    scf_disallowed += 1
+        print(
+            f"{name}\tmerge_candidates={merge_candidates}\t"
+            f"scf_disallowed_merges={scf_disallowed}"
+        )
+
+
 def query(rows: list[dict[str, str]], alignment: str) -> None:
     matches = [
         row for row in rows if row["alignment_test"].lower() == alignment.lower()
@@ -134,7 +283,29 @@ def main() -> None:
         "--alignment",
         help="Optional alignment label to inspect, for example C1=C2.",
     )
+    parser.add_argument(
+        "--cases",
+        default="alignment_cases.tsv",
+        help="Path to SCF comparison vectors for rule execution.",
+    )
+    parser.add_argument(
+        "--check-cases",
+        action="store_true",
+        help="Execute the alpha decision rule on the alignment case vectors.",
+    )
+    parser.add_argument(
+        "--compare-baselines",
+        action="store_true",
+        help="Compare simple merge-licensing baselines against the SCF rule.",
+    )
     args = parser.parse_args()
+
+    if args.check_cases:
+        check_alignment_cases(Path(args.cases))
+        return
+    if args.compare_baselines:
+        compare_baselines(Path(args.cases))
+        return
 
     rows = load_rows(Path(args.coding))
     if args.alignment:

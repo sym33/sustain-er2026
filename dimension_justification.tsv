@@ -1,0 +1,11 @@
+dimension	source_distinction	preservation_question	ablation_failure	witness_case
+actor	organizational ownership, reporting entity, economic actor	Who can be held to the claim?	responsibility transfer	C2a_C4a
+object	operations, value-chain emissions, activity, product, portfolio, disclosure item	What is the claim about?	object substitution	C1a_C2a
+boundary	operational scopes, lifecycle frame, activity boundary, reporting boundary	What is included and excluded?	scope drift	C1e_C2a
+metric_basis	CO2e accounting, pathway metric, taxonomy KPI, repairability score, indicator mapping	What measurement basis makes the claim comparable?	metric translation without warrant	C6e_C2a
+temporal_structure	target year, baseline, reporting period, milestone, pathway	Which time structure anchors progress?	temporal misalignment	C1a_C2a
+intervention_logic	reduction, compensation, neutralization, disclosure, classification, repair, reuse	What action logic is being preserved?	intervention substitution	C2d
+normative_threshold	carbon-neutrality criteria, science-based target criteria, taxonomy safeguards, reporting criterion	Which criterion determines adequacy?	threshold weakening	C4e_INV
+evidence_basis	inventory evidence, validation evidence, DNSH evidence, reporting provenance	What support makes the claim assertable?	unsupported equivalence	C2b_C3a
+accountability_relation	assurance, validation, disclosure, internal commitment, regulatory relation	Who can audit, validate, or contest it?	accountability loss	C3d
+sustainability_purpose	climate mitigation, circular economy, sustainable finance, sustainability reporting	Why does the claim matter as a sustainability claim?	purpose drift	C5a
