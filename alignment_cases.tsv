@@ -1,10 +1,26 @@
-case_id	left_claim	right_claim	supersedes	actor	object	boundary	metric_basis	temporal_structure	intervention_logic	normative_threshold	evidence_basis	accountability_relation	sustainability_purpose	expected_alpha	operation
-C1a_C2a	Operational carbon-neutrality claim	Value-chain net-zero target	no	=	neq	neq	approx	neq	neq	=	neq	neq	=	B	split
-C2b_C3a	Near-term target	Externally validated science-based target	no	=	=	=	=	subset	=	=	neq	neq	=	A	qualify
-C4a_INV	Taxonomy-aligned activity	Broad sustainable-investment claim	no	=	=	=	subset	=	subset	subset	=	=	=	Ref	qualify
-C2a_C4a	Corporate net-zero target	Taxonomy-aligned activity	no	neq	neq	neq	neq	=	neq	neq	neq	neq	approx	B	split
-C3a_C3c	Approved science-based target	Same target with updated evidence	no	=	=	=	=	=	=	=	=	=	=	equiv	merge-with-provenance
-C1e_C2a	Operational carbon-neutrality claim with unstated scope	Net-zero target	no	=	=	?	=	=	=	?	?	neq	=	U	complete
-C6e_C2a	Climate-neutral KPI	Net-zero target	no	=	neq	=	?	=	neq	=	=	neq	neq	U	complete
-C4e_INV	Taxonomy activity failing safeguards	Sustainable-investment claim	no	=	=	=	neq	=	neq	bot	bot	=	=	#	block
-C3e_C3c	Earlier approved science-based target	Later approved update	yes	=	=	=	=	neq	neq	=	=	=	=	Repl	revise
+case_id	left_claim	right_claim	supersedes	actor	object	boundary	metric_basis	temporal_structure	intervention_logic	normative_threshold	evidence_basis	accountability_relation	sustainability_purpose	expected_alpha	operation	source_analogue
+C1a_C2a	Operational carbon-neutrality claim	Value-chain net-zero target	no	=	neq	neq	approx	neq	neq	=	neq	neq	=	B	split	ISO 14068 carbon-neutrality claim vs SBTi/GHG value-chain net-zero pattern
+C2b_C3a	Near-term target	Externally validated science-based target	no	=	=	=	=	subset	=	=	neq	neq	=	A	qualify	SBTi target validation status pattern
+C4a_INV	Taxonomy-aligned activity	Broad sustainable-investment claim	no	=	=	=	subset	=	subset	subset	=	=	=	Ref	qualify	EU Taxonomy activity criteria vs broad sustainable-investment language
+C2a_C4a	Corporate net-zero target	Taxonomy-aligned activity	no	neq	neq	neq	neq	=	neq	neq	neq	neq	approx	B	split	Corporate transition target vs EU Taxonomy activity eligibility pattern
+C3a_C3c	Approved science-based target	Same target with updated evidence	no	=	=	=	=	=	=	=	=	=	=	equiv	merge-with-provenance	SBTi approved target with updated supporting evidence
+C1e_C2a	Operational carbon-neutrality claim with unstated scope	Net-zero target	no	=	=	?	=	=	=	?	?	neq	=	U	complete	ISO 14068 claim boundary disclosure gap
+C6e_C2a	Climate-neutral KPI	Net-zero target	no	=	neq	=	?	=	neq	=	=	neq	neq	U	complete	Indicator-to-target mapping gap in ESG dashboards
+C4e_INV	Taxonomy activity failing safeguards	Sustainable-investment claim	no	=	=	=	neq	=	neq	bot	bot	=	=	#	block	EU Taxonomy minimum safeguards/DNSH failure
+C3e_C3c	Earlier approved science-based target	Later approved update	yes	=	=	=	=	neq	neq	=	=	=	=	Repl	revise	SBTi target supersession/update pattern
+ISO14068_SBTI_NETZERO	Carbon-neutral product claim	Corporate net-zero value-chain target	no	=	neq	neq	approx	neq	neq	=	neq	neq	=	B	split	ISO 14068 product claim vs SBTi corporate net-zero target
+SBTI_NEAR_LONG	Near-term 2030 reduction target	Long-term 2050 net-zero target	no	=	=	=	=	subset	subset	=	=	=	=	Ref	qualify	SBTi near-term target vs long-term net-zero target
+GHG_SCOPE12_SCOPE3	Scope 1 and 2 operations target	Scope 3 value-chain target	no	=	neq	neq	=	=	=	=	=	=	=	B	split	GHG Protocol Scope 1/2 vs Scope 3 boundary distinction
+GHG_SCOPE2_LOCATION_MARKET	Scope 2 location-based emissions KPI	Scope 2 market-based emissions KPI	no	=	=	=	approx	=	=	=	=	=	=	M	translate	GHG Protocol Scope 2 location-based vs market-based accounting
+EU_TAX_SC_DNSH	Taxonomy substantial-contribution activity	Taxonomy activity satisfying DNSH criteria	no	=	=	=	=	=	subset	subset	=	=	=	Ref	qualify	EU Taxonomy substantial contribution plus DNSH/minimum-safeguards pattern
+EU_TAX_FAIL_DNSH	Renewable-energy activity with DNSH failure	Taxonomy-aligned renewable activity	no	=	=	=	=	=	=	bot	bot	=	=	#	block	EU Taxonomy DNSH failure despite environmental contribution
+GRI_ESRS_EMISSIONS	GRI emissions disclosure	ESRS E1 emissions disclosure	no	=	=	=	approx	=	=	=	=	=	=	M	translate	GRI-to-ESRS climate disclosure mapping pattern
+GRI_TARGET_DISCLOSURE	Climate-target disclosure	Approved climate target	no	=	=	=	=	=	=	=	neq	neq	=	A	qualify	Disclosure statement vs validated target evidence/accountability pattern
+CIRC_RECYCLED_PRODUCT	Recycled-content KPI	Circular product claim	no	=	=	=	subset	=	subset	=	=	=	=	Ref	qualify	Circular-economy indicator vs product-level circularity claim
+CIRC_REUSE_RECYCLE	Product reuse commitment	Product recycling commitment	no	=	=	=	=	=	neq	=	=	=	=	I	qualify	Circular-economy reuse strategy vs recycling strategy distinction
+OFFSET_REDUCTION	Carbon-neutrality claim based on offsets	Emissions-reduction transition target	no	=	=	=	=	=	neq	=	=	=	=	I	qualify	Offsetting claim vs direct-reduction transition claim
+RENEWABLE_EMISSIONS	Renewable-electricity procurement claim	Emissions-reduction target	no	=	=	=	approx	=	neq	=	=	=	=	M	translate	Energy procurement claim vs emissions-accounting target
+ESRS_ACTION_TARGET	Climate action plan measure	Climate target disclosure	no	=	neq	=	=	=	neq	=	=	=	=	B	split	ESRS action/measure disclosure vs target disclosure distinction
+TRANSITION_CAPEX_TARGET	Transition-plan CAPEX alignment	Emissions target achievement claim	no	=	neq	neq	approx	=	neq	=	neq	=	=	B	split	Transition-plan finance metric vs emissions-outcome target
+BIODIVERSITY_NNL	Nature-positive ambition	Biodiversity no-net-loss commitment	no	=	=	=	approx	neq	neq	=	neq	neq	approx	M	translate	Biodiversity ambition language vs no-net-loss commitment pattern
+WATER_CLIMATE_TARGET	Water-stewardship target	Climate net-zero target	no	=	neq	neq	neq	=	neq	neq	neq	neq	neq	B	split	Cross-purpose sustainability target collision

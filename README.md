@@ -5,10 +5,10 @@ This repository contains supplementary material for the double-blind ER 2026 sub
 ## Contents
 
 - `case_coding.tsv` contains the structured validation coding: 29 claim formulations across six claim families, 18 candidate alignments, ten SCF dimensions, primary and secondary commitment-alignment relations, modeling consequences, and a short coding rationale for each row.
-- `alignment_cases.tsv` contains comparison vectors for the core alignments. The review gate executes the paper's precedence rule over these vectors and checks the resulting alpha relation and governance operation.
+- `alignment_cases.tsv` contains comparison vectors for the core alignments plus literature-/standard-anchored stress pairs. The review gate executes the paper's precedence rule over these vectors and checks the resulting alpha relation and governance operation.
 - `dimension_justification.tsv` records the dimension-selection audit: source distinction, preservation question, ablation failure, and witness case for each SCF dimension.
 - `dimension_ablation_cases.tsv` contains executable one-dimension ablation witnesses for the SCF core.
-- `matcher_baseline.py` runs label-hybrid and TF-IDF matcher baselines over the executable alignment cases and reports how many retrieved candidates are merge-safe under SCF.
+- `matcher_baseline.py` runs label-hybrid and ClimateBERT matcher baselines over the executable alignment cases and reports how many retrieved candidates are merge-safe under SCF. A legacy TF-IDF comparison is still available with `--include-tfidf`.
 - `CODING_PROTOCOL.md` describes the recoding steps and relation guidelines used to produce the table.
 - `SCF_REFERENCE_SCHEMA.md` and `value_domains.tsv` document the controlled value domains used for recoding.
 - `scf_review_gate.py` is a small command-line review gate that reads the coding table and summarizes the governance operation implied by each primary relation.
@@ -42,8 +42,8 @@ python3 scf_review_gate.py --check-cases
 Expected headline output:
 
 ```text
-alignment_cases	9
-generic_match_baseline_merge_candidates	9
+alignment_cases	25
+generic_match_baseline_merge_candidates	25
 scf_merge_safe_cases	1
 alpha_mismatches	0
 operation_mismatches	0
@@ -78,15 +78,17 @@ To run the label-only matcher baselines:
 python3 matcher_baseline.py
 ```
 
+The default BERT model is `climatebert/distilroberta-base-climate-s`, a Hugging Face ClimateBERT model additionally pre-trained on climate-related research abstracts, corporate and general news, and company reports. Install `transformers` and `torch` in the Python environment used for the artifact, for example with `pip install -r requirements-baseline.txt`, to reproduce this baseline; otherwise the script reports the BERT baseline as unavailable. To also report the older TF-IDF comparison, run `python3 matcher_baseline.py --include-tfidf`.
+
 Expected headline output:
 
 ```text
-candidate_pairs	9
+candidate_pairs	25
 retrieval	label_hybrid_top_5
 retrieved_pairs	5
-scf_merge_safe_retrieved	1
-scf_disallowed_retrieved	4
-retrieval	label_tfidf_top_5
+scf_merge_safe_retrieved	0
+scf_disallowed_retrieved	5
+retrieval	label_bert_top_5
 retrieved_pairs	5
 scf_merge_safe_retrieved	0
 scf_disallowed_retrieved	5
