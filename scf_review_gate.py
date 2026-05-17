@@ -253,6 +253,57 @@ def compare_baselines(path: Path) -> None:
         )
 
 
+def load_ablation_cases(path: Path) -> list[dict[str, str]]:
+    with path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle, delimiter="\t")
+        rows = list(reader)
+    required = {
+        "case_id",
+        "masked_dimension",
+        "supersedes",
+        *DIMENSIONS,
+        "expected_full_alpha",
+        "expected_masked_alpha",
+    }
+    missing = required.difference(reader.fieldnames or [])
+    if missing:
+        raise SystemExit(f"Missing columns: {', '.join(sorted(missing))}")
+    return rows
+
+
+def check_ablation_cases(path: Path) -> None:
+    rows = load_ablation_cases(path)
+    full_mismatches = []
+    masked_mismatches = []
+    unsafe_merges_without_dimension = 0
+    for row in rows:
+        full_alpha = alpha_for(row)
+        masked = dict(row)
+        masked[masked["masked_dimension"]] = "="
+        masked_alpha = alpha_for(masked)
+        if full_alpha != row["expected_full_alpha"]:
+            full_mismatches.append((row["case_id"], row["expected_full_alpha"], full_alpha))
+        if masked_alpha != row["expected_masked_alpha"]:
+            masked_mismatches.append((row["case_id"], row["expected_masked_alpha"], masked_alpha))
+        if full_alpha != "equiv" and masked_alpha == "equiv":
+            unsafe_merges_without_dimension += 1
+
+    print(f"dimension_ablation_cases\t{len(rows)}")
+    print(f"unsafe_merges_when_masked\t{unsafe_merges_without_dimension}")
+    print(f"full_alpha_mismatches\t{len(full_mismatches)}")
+    print(f"masked_alpha_mismatches\t{len(masked_mismatches)}")
+    if full_mismatches:
+        print()
+        print("full_alpha_mismatch_details")
+        for case_id, expected, actual in full_mismatches:
+            print(f"{case_id}\texpected={expected}\tactual={actual}")
+    if masked_mismatches:
+        print()
+        print("masked_alpha_mismatch_details")
+        for case_id, expected, actual in masked_mismatches:
+            print(f"{case_id}\texpected={expected}\tactual={actual}")
+
+
 def query(rows: list[dict[str, str]], alignment: str) -> None:
     matches = [
         row for row in rows if row["alignment_test"].lower() == alignment.lower()
@@ -298,6 +349,16 @@ def main() -> None:
         action="store_true",
         help="Compare simple merge-licensing baselines against the SCF rule.",
     )
+    parser.add_argument(
+        "--ablation-cases",
+        default="dimension_ablation_cases.tsv",
+        help="Path to one-dimension ablation witness vectors.",
+    )
+    parser.add_argument(
+        "--check-ablation",
+        action="store_true",
+        help="Check that each SCF dimension prevents at least one unsafe merge.",
+    )
     args = parser.parse_args()
 
     if args.check_cases:
@@ -305,6 +366,9 @@ def main() -> None:
         return
     if args.compare_baselines:
         compare_baselines(Path(args.cases))
+        return
+    if args.check_ablation:
+        check_ablation_cases(Path(args.ablation_cases))
         return
 
     rows = load_rows(Path(args.coding))

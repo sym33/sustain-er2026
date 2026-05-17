@@ -1,0 +1,11 @@
+case_id	masked_dimension	supersedes	actor	object	boundary	metric_basis	temporal_structure	intervention_logic	normative_threshold	evidence_basis	accountability_relation	sustainability_purpose	expected_full_alpha	expected_masked_alpha	real_case_analogue
+actor_witness	actor	no	neq	=	=	=	=	=	=	=	=	=	B	equiv	C2a_C4a
+object_witness	object	no	=	neq	=	=	=	=	=	=	=	=	B	equiv	C1a_C2a
+boundary_witness	boundary	no	=	=	neq	=	=	=	=	=	=	=	B	equiv	C1e_C2a
+metric_witness	metric_basis	no	=	=	=	approx	=	=	=	=	=	=	M	equiv	C6c
+temporal_witness	temporal_structure	no	=	=	=	=	neq	=	=	=	=	=	T	equiv	C1a_C2a
+intervention_witness	intervention_logic	no	=	=	=	=	=	neq	=	=	=	=	I	equiv	C2d
+threshold_witness	normative_threshold	no	=	=	=	=	=	=	bot	=	=	=	#	equiv	C4e_INV
+evidence_witness	evidence_basis	no	=	=	=	=	=	=	=	neq	=	=	A	equiv	C2b_C3a
+accountability_witness	accountability_relation	no	=	=	=	=	=	=	=	=	neq	=	A	equiv	C3d
+purpose_witness	sustainability_purpose	no	=	=	=	=	=	=	=	=	=	neq	Trace	equiv	C5a
